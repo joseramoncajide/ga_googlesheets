@@ -114,10 +114,10 @@ names(kf.list) <- c('dc80893f3ea03c24353a825243ddd846','2c37e68ac2fa9641a6f51468
 
 
 # upload_klipolio  <- function(csv, data_source) {
-#   system('curl https://app.klipfolio.com/api/1/datasource-instances/45947df1d78e8b246335238cdcf70b96/data -X PUT --upload-file  klipflio.csv --header "kf-api-key:c48f1305307152134ef2bd2ade525d9a927f2985" -H Content-Type:application/csv', wait = T )
+#   system('curl https://app.klipfolio.com/api/1/datasource-instances/45947df1d78e8b246335238cdcf70b96/data -X PUT --upload-file  klipflio.csv --header "kf-api-key:" -H Content-Type:application/csv', wait = T )
 # }
 
-foreach(i=1:length(kf.list), .inorder = F) %dopar% system(paste0('curl https://app.klipfolio.com/api/1/datasource-instances/',names(kf.list[i]),'/data -X PUT --upload-file  ',file.path('csv',paste0(names(ga_data[i]),'.csv')),' --header "kf-api-key:c48f1305307152134ef2bd2ade525d9a927f2985" -H Content-Type:application/csv'), wait = T, ignore.stdout = F )
+foreach(i=1:length(kf.list), .inorder = F) %dopar% system(paste0('curl https://app.klipfolio.com/api/1/datasource-instances/',names(kf.list[i]),'/data -X PUT --upload-file  ',file.path('csv',paste0(names(ga_data[i]),'.csv')),' --header "kf-api-key:" -H Content-Type:application/csv'), wait = T, ignore.stdout = F )
 
 
 
@@ -125,7 +125,7 @@ foreach(i=1:length(kf.list), .inorder = F) %dopar% system(paste0('curl https://a
 
 
 ###
-system("curl https://app.klipfolio.com/api/1/datasources -d \"{'name': 'Example','description': 'This is a new data source', 'format': 'csv', 'connector': 'box', 'refresh_interval': 0, 'properties': {'endpoint_url': 'http://test/data/scatter.xml', 'method': 'GET'}}\" --header 'kf-api-key:c48f1305307152134ef2bd2ade525d9a927f2985' -H Content-Type:application/json " )
+system("curl https://app.klipfolio.com/api/1/datasources -d \"{'name': 'Example','description': 'This is a new data source', 'format': 'csv', 'connector': 'box', 'refresh_interval': 0, 'properties': {'endpoint_url': 'http://test/data/scatter.xml', 'method': 'GET'}}\" --header 'kf-api-key:' -H Content-Type:application/json " )
 
 
 
